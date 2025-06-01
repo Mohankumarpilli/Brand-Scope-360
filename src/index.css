@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-black text-white antialiased;
+  }
+}
+
+@layer components {
+  /* Cyber Glow Effect */
+  .cyber-glow {
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.3),
+                0 0 40px rgba(220, 38, 38, 0.2),
+                0 0 60px rgba(220, 38, 38, 0.1);
+  }
+  
+  /* Cyber Border */
+  .cyber-border {
+    @apply border border-brand-red/30;
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, transparent 100%);
+  }
+  
+  /* Text Glow */
+  .text-glow {
+    text-shadow: 0 0 10px rgba(220, 38, 38, 0.5),
+                 0 0 20px rgba(220, 38, 38, 0.3),
+                 0 0 30px rgba(220, 38, 38, 0.2);
+  }
+  
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-red via-red-500 to-red-600 bg-clip-text text-transparent;
+  }
+  
+  /* Background Grid */
+  .bg-grid {
+    background-image: 
+      linear-gradient(rgba(220, 38, 38, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(220, 38, 38, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  /* Hover Card Effect */
+  .hover-card {
+    @apply transition-all duration-300;
+  }
+  
+  .hover-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Pulse Animation */
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  /* Float Animation */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  /* Scan Line Effect */
+  .scan-line {
+    @apply absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-red to-transparent opacity-50;
+    animation: scan 8s linear infinite;
+  }
+}
+
+@layer utilities {
+  /* Custom Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-brand-dark;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-brand-red rounded-full;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-red-600;
+  }
+  
+  /* Selection Color */
+  ::selection {
+    @apply bg-brand-red text-white;
+  }
+  
+  /* Focus Styles */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-black;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(-20px); 
+  }
+}
+
+@keyframes scan {
+  0% { 
+    transform: translateY(-100vh); 
+  }
+  100% { 
+    transform: translateY(100vh); 
+  }
+}
+
+@keyframes glow {
+  0%, 100% { 
+    opacity: 1; 
+  }
+  50% { 
+    opacity: 0.5; 
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+/* Loading Animation */
+.loading-spinner {
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top: 3px solid #DC2626;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Glass Morphism Effect */
+.glass {
+  background: rgba(31, 31, 31, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+/* Neon Glow Button */
+.neon-button {
+  @apply relative px-8 py-4 text-white font-semibold rounded-xl overflow-hidden;
+  background: linear-gradient(45deg, #DC2626, #EF4444);
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.5),
+              inset 0 0 20px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.neon-button:hover {
+  box-shadow: 0 0 30px rgba(220, 38, 38, 0.7),
+              inset 0 0 20px rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.neon-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.neon-button:hover::before {
+  left: 100%;
+}
