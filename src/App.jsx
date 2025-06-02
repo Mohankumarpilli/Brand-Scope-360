@@ -1,29 +1,33 @@
+// src/App.jsx
 import React from 'react';
-import Header from './components/common/Header';
-import Hero from './components/sections/Hero';
-import Features from './components/sections/Features';
-import DashboardPreview from './components/sections/DashboardPreview';
-import ThreatStats from './components/sections/ThreatStats';
-import Solutions from './components/sections/Solutions';
-import CTA from './components/sections/CTA';
-import Footer from './components/common/Footer';
-import BackgroundEffects from './components/common/BackgroundEffects';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './components/auth/Login';
+import ProtectedRoute from './components/auth/ProtectedRoute';
+import Dashboard from './components/pages/Dashboard';
+import HomePage from './components/pages/HomePage';
 
 function App() {
   return (
-    <div className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
-      <BackgroundEffects />
-      <Header />
-      <main>
-        <Hero />
-        <ThreatStats />
-        <Features />
-        <Solutions />
-        <DashboardPreview />
-        <CTA />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        
+        {/* Protected Routes */}
+        <Route 
+          path="/dashboard" 
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } 
+        />
+        
+        {/* Redirect any unknown routes to home */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Router>
   );
 }
 
